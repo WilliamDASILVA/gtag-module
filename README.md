@@ -1,4 +1,4 @@
-# @nuxtjs/google-gtag
+# @williamdasilva/gtag-module
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
@@ -10,8 +10,8 @@
 
 [📖 **Release Notes**](./CHANGELOG.md)
 
-# Attention
-This project is looking for maintainers. Please see [RFC](https://github.com/nuxt-community/gtm-module/issues/82) for future of module.
+# Note
+This module is a fork of https://github.com/nuxt-community/google-gtag-module. Using it to be compatible with latest version of Nuxt including runtime configs.
 
 ## Features
 
@@ -21,22 +21,22 @@ The module includes Google `googletagmanager.com/gtag/js` into your project and 
 
 ## Setup
 
-1. Add `@nuxtjs/google-gtag` dependency to your project
+1. Add `@williamdasilva/gtag-module` dependency to your project
 
 ```bash
-yarn add @nuxtjs/google-gtag # or npm install @nuxtjs/google-gtag
+yarn add @williamdasilva/gtag-module # or npm install @williamdasilva/gtag-module
 ```
 
-2. Add `@nuxtjs/google-gtag` to the `modules` section of `nuxt.config.js`
+2. Add `@williamdasilva/gtag-module` to the `modules` section of `nuxt.config.js`
 
 ```js
 {
   modules: [
     // Simple usage
-    '@nuxtjs/google-gtag',
+    '@williamdasilva/gtag-module',
 
     // With options
-    ['@nuxtjs/google-gtag', { /* module options */ }]
+    ['@williamdasilva/gtag-module', { /* module options */ }]
   ]
 }
 ```
@@ -46,7 +46,7 @@ yarn add @nuxtjs/google-gtag # or npm install @nuxtjs/google-gtag
 ```js
 {
   modules: [
-    '@nuxtjs/google-gtag'
+    '@williamdasilva/gtag-module'
   ],
   'google-gtag': {
     id: 'UA-XXXX-XX',
@@ -65,6 +65,38 @@ yarn add @nuxtjs/google-gtag # or npm install @nuxtjs/google-gtag
         send_page_view: false // optional configurations
       }
     }]
+  }
+}
+```
+
+### Using runtime config
+
+```js
+{
+  modules: [
+    '@williamdasilva/gtag-module'
+  ],
+  'google-gtag': {
+    config: {
+      anonymize_ip: true, // anonymize IP 
+      send_page_view: false, // might be necessary to avoid duplicated page track on page reload
+      linker: {
+        domains: ['domain.com','domain.org']
+      }
+    },
+    debug: true, // enable to track in dev mode
+    disableAutoPageTrack: false, // disable if you don't want to track each page route with router.afterEach(...).
+    additionalAccounts: [{
+      id: 'AW-XXXX-XX', // required if you are adding additional accounts
+      config: {
+        send_page_view: false // optional configurations
+      }
+    }]
+  },
+  publicRuntimeConfig: {
+    gtag: {
+      id: 'UA-XXXX-XX'
+    }
   }
 }
 ```
@@ -135,28 +167,8 @@ Install [`Google Tag Assistant`](https://chrome.google.com/webstore/detail/tag-a
 
 ## Development
 
-- Clone this repository
-- Install dependencies using `yarn install` or `npm install`
-- Start development server using `npm run dev`
+Repo not actively maintained. See https://github.com/nuxt-community/gtm-module/issues/82 for future usages.
 
 ## License
 
 [MIT License](./LICENSE)
-
-Copyright (c) Nuxt Community
-
-<!-- Badges -->
-[npm-version-src]: https://img.shields.io/npm/v/@nuxtjs/google-gtag/latest.svg?style=flat-square
-[npm-version-href]: https://npmjs.com/package/@nuxtjs/google-gtag
-
-[npm-downloads-src]: https://img.shields.io/npm/dt/@nuxtjs/google-gtag.svg?style=flat-square
-[npm-downloads-href]: https://npmjs.com/package/@nuxtjs/google-gtag
-
-[circle-ci-src]: https://img.shields.io/circleci/project/github/nuxt-community/google-gtag.svg?style=flat-square
-[circle-ci-href]: https://circleci.com/gh/nuxt-community/google-gtag
-
-[codecov-src]: https://img.shields.io/codecov/c/github/nuxt-community/google-gtag.svg?style=flat-square
-[codecov-href]: https://codecov.io/gh/nuxt-community/google-gtag
-
-[license-src]: https://img.shields.io/npm/l/@nuxtjs/google-gtag.svg?style=flat-square
-[license-href]: https://npmjs.com/package/@nuxtjs/google-gtag

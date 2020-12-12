@@ -11,7 +11,12 @@ module.exports = {
   modules: [
     { handler: require('../../../') }
   ],
-  'google-gtag': {
+  gtag: {
     id: 'UA-XXX-XX'
+  },
+  publicRuntimeConfig: {
+    gtag: {
+      id: 'UA-HELLO-WORLD'
+    }
   }
 }
